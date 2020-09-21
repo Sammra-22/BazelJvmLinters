@@ -1,0 +1,8 @@
+# IDE
+.idea/
+
+# bazel
+bazel-*
+
+# misc
+.DS_Store
