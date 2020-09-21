@@ -6,6 +6,9 @@ RULES_ANDROID_SHA = "cd06d15dd8bb59926e4d65f9003bfc20f9da4b2519985c27e190cddc8b7
 RULES_KOTLIN_VERSION = "legacy-1.3.0"
 RULES_KOTLIN_SHA = "4fd769fb0db5d3c6240df8a9500515775101964eebdf85a3f9f0511130885fde"
 
+RULES_JAVA_VERSION = "0.1.1"
+RULES_JAVA_SHA = "220b87d8cfabd22d1c6d8e3cdb4249abd4c93dcc152e0667db061fb1b957ee68"
+
 RULES_JVM_EXTERNAL_TAG = "2.2"
 RULES_JVM_EXTERNAL_SHA = "f1203ce04e232ab6fdd81897cf0ff76f2c04c0741424d192f28e65ae752ce2d6"
 
@@ -32,4 +35,11 @@ def generate_workspace_rules():
         strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
         sha256 = RULES_JVM_EXTERNAL_SHA,
         url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
+    )
+    http_archive(
+        name = "rules_java",
+        sha256 = RULES_JAVA_SHA,
+        urls = ["https://github.com/bazelbuild/rules_java/releases/download/{version}/rules_java-{version}.tar.gz".format(
+            version = RULES_JAVA_VERSION
+        )],
     )
