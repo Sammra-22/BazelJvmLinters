@@ -1,8 +1,9 @@
 ## External rules & toolchains ##
 
-load("//:dependencies.bzl", "generate_workspace_rules")
+load("//:dependencies.bzl", "generate_workspace_rules", "import_external_tools")
 
 generate_workspace_rules()
+import_external_tools()
 
 load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_register_toolchains")
 
