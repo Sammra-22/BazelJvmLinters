@@ -1,3 +1,5 @@
+workspace(name = "bazel_jvm_linters")
+
 ## External rules & toolchains ##
 
 load("//:dependencies.bzl", "generate_workspace_rules", "import_external_tools")
