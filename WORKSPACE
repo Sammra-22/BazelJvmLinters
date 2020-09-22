@@ -11,7 +11,7 @@ kotlin_repositories()
 kt_register_toolchains()
 android_sdk_repository(name = "androidsdk")
 
-## External libraries ##
+## External libraries & artifacts ##
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 
@@ -23,6 +23,7 @@ ANDROIDX_FRAGMENT = "1.0.0"
 ANDROIDX_LIFECYCLE = "2.2.0"
 ANDROIDX_NAVIGATION = "2.3.0"
 COM_GOOGLE_MATERIAL = "1.0.0"
+COM_PINTEREST_KTLINT = "0.39.0"
 
 maven_install(
     artifacts = [
@@ -35,10 +36,12 @@ maven_install(
         "androidx.lifecycle:lifecycle-viewmodel:%s" % ANDROIDX_LIFECYCLE,
         "androidx.lifecycle:lifecycle-common:%s" % ANDROIDX_LIFECYCLE,
         "androidx.navigation:navigation-fragment:%s" % ANDROIDX_NAVIGATION,
-        "com.google.android.material:material:%s" % COM_GOOGLE_MATERIAL
+        "com.google.android.material:material:%s" % COM_GOOGLE_MATERIAL,
+        "com.pinterest:ktlint:%s" % COM_PINTEREST_KTLINT,
     ],
     repositories = [
         "https://maven.google.com",
+        "https://repo1.maven.org/maven2/"
     ],
     fetch_sources = True,
 )

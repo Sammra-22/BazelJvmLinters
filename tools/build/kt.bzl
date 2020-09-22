@@ -14,18 +14,22 @@ load(
 )
 load(
     "//tools/build:utils.bzl",
-    _kt_lint = "kt_lint"
+    _kt_lint = "kt_lint",
+    _kt_format = "kt_format",
 )
 
 def kt_jvm_library(**args):
+    _kt_format(args["name"])
     _kt_lint(args["name"])
     _kt_jvm_library(**args)
 
 def kt_jvm_binary(**args):
+    _kt_format(args["name"])
     _kt_lint(args["name"])
     _kt_jvm_binary(**args)
 
 def kt_android_library(**args):
+    _kt_format(args["name"])
     _kt_lint(args["name"])
     _kt_android_library(**args)
 
@@ -44,5 +48,6 @@ def kt_android_binary(name, srcs = [], deps = [], **args):
     )
 
 def kt_jvm_test(tags = [], **args):
+    _kt_format(args["name"])
     _kt_lint(args["name"])
     _kt_jvm_test(tags = tags, **args)
