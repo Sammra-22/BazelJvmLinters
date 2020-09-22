@@ -12,29 +12,37 @@ load(
     _kt_jvm_library = "kt_jvm_library",
     _kt_jvm_test = "kt_jvm_test",
 )
+load(
+    "//tools/build:utils.bzl",
+    _kt_lint = "kt_lint"
+)
 
-def kt_jvm_library(**kwargs):
-    _kt_jvm_library(**kwargs)
+def kt_jvm_library(**args):
+    _kt_lint(args["name"])
+    _kt_jvm_library(**args)
 
-def kt_jvm_binary(**kwargs):
-    _kt_jvm_binary(**kwargs)
+def kt_jvm_binary(**args):
+    _kt_lint(args["name"])
+    _kt_jvm_binary(**args)
 
-def kt_android_library(**kwargs):
-    _kt_android_library(**kwargs)
+def kt_android_library(**args):
+    _kt_lint(args["name"])
+    _kt_android_library(**args)
 
-def kt_android_binary(name, srcs = [], deps = [], **kwargs):
+def kt_android_binary(name, srcs = [], deps = [], **args):
     library_name = name + "_kt_android_lib"
     kt_android_library(
         name = library_name,
-        tags = kwargs.get("tags", default = []),
+        tags = args.get("tags", default = []),
         srcs = srcs,
         deps = deps,
     )
     _android_binary(
         name = name,
         deps = deps + [library_name],
-        **kwargs
+        **args
     )
 
-def kt_jvm_test(tags = [], **kwargs):
-    _kt_jvm_test(tags = tags, **kwargs)
+def kt_jvm_test(tags = [], **args):
+    _kt_lint(args["name"])
+    _kt_jvm_test(tags = tags, **args)
